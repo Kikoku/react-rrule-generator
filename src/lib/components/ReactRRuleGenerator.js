@@ -8,7 +8,8 @@ import End from './End/index';
 import computeRRuleToString from '../utils/computeRRule/toString/computeRRule';
 import computeRRuleFromString from '../utils/computeRRule/fromString/computeRRule';
 import configureInitialState from '../utils/configureInitialState';
-import '../styles/index.css';
+import 'semantic-ui-css/semantic.min.css';
+import { Segment } from 'semantic-ui-react'
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config
