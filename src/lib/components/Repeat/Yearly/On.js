@@ -5,6 +5,8 @@ import moment from 'moment';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 import { MONTHS } from '../../../constants/index';
 
+import { Grid, Select } from 'semantic-ui-react'
+
 const RepeatYearlyOn = ({
   id,
   mode,
@@ -16,56 +18,59 @@ const RepeatYearlyOn = ({
   const isActive = mode === 'on';
 
   return (
-    <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
-      <div className="col-sm-1 offset-sm-2">
+    <Grid>
+      <Grid.Row className={`form-group d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
+        <Grid.Column mobile={1}>
 
-        {hasMoreModes && (
-          <input
-            id={id}
-            type="radio"
-            name="repeat.yearly.mode"
-            aria-label="Repeat yearly on"
-            value="on"
-            checked={isActive}
+        </Grid.Column>
+        <Grid.Column mobile={1} className="col-sm-1 offset-sm-2">
+
+          {hasMoreModes && (
+            <input
+              id={id}
+              type="radio"
+              name="repeat.yearly.mode"
+              aria-label="Repeat yearly on"
+              value="on"
+              checked={isActive}
+              onChange={handleChange}
+            />
+          )}
+        </Grid.Column>
+
+        <Grid.Column mobile={1}>
+          on
+        </Grid.Column>
+
+        <Grid.Column mobile={4}>
+          <Select
+            fluid
+            id={`${id}-month`}
+            name="repeat.yearly.on.month"
+            aria-label="Repeat yearly on month"
+            className="form-control"
+            value={on.month}
+            disabled={!isActive}
             onChange={handleChange}
+            options={MONTHS.map(month => ({key: month, value:month, text: month}))}
           />
-        )}
-      </div>
+        </Grid.Column>
 
-      <div className="col-sm-1">
-        on
-      </div>
-
-      <div className="col-sm-2">
-        <select
-          id={`${id}-month`}
-          name="repeat.yearly.on.month"
-          aria-label="Repeat yearly on month"
-          className="form-control"
-          value={on.month}
-          disabled={!isActive}
-          onChange={handleChange}
-        >
-          {MONTHS.map(month => <option key={month} value={month}>{month}</option>)}
-        </select>
-      </div>
-
-      <div className="col-sm-2">
-        <select
-          id={`${id}-day`}
-          name="repeat.yearly.on.day"
-          aria-label="Repeat yearly on a day"
-          className="form-control"
-          value={on.day}
-          disabled={!isActive}
-          onChange={numericalFieldHandler(handleChange)}
-        >
-          {[...new Array(daysInMonth)].map((day, i) => (
-            <option key={i} value={i + 1}>{i + 1}</option>
-          ))}
-        </select>
-      </div>
-    </div>
+        <Grid.Column mobile={4}>
+          <Select
+            fluid
+            id={`${id}-day`}
+            name="repeat.yearly.on.day"
+            aria-label="Repeat yearly on a day"
+            className="form-control"
+            value={on.day}
+            disabled={!isActive}
+            onChange={numericalFieldHandler(handleChange)}
+            options={[...new Array(daysInMonth)].map((day, i) => ({ key: i, value: i+1, text: i+1}))}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 RepeatYearlyOn.propTypes = {
