@@ -55,7 +55,8 @@ const Repeat = ({
           />
         </Grid.Column>
       </Grid.Row>
-
+      <div style={{width: '100%'}}>
+      
       {
         isOptionSelected('Yearly') &&
         <RepeatYearly
@@ -96,7 +97,7 @@ const Repeat = ({
           handleChange={handleChange}
         />
       }
-
+      </div>
     </Grid>
   );
 };
