@@ -26,8 +26,7 @@ const Repeat = ({
   return (
     <Grid className="px-3">
       <Grid.Row className="form-group row">
-        <Grid.Column mobile={1} />
-        <Grid.Column mobile={2} className="col-sm-2 text-sm-right">
+        <Grid.Column mobile={1} className="col-sm-2 text-sm-right">
           <label
             htmlFor={`${id}-frequency`}
             className="col-form-label"
@@ -37,7 +36,7 @@ const Repeat = ({
             </strong>
           </label>
         </Grid.Column>
-        <Grid.Column mobile={8} className="col-sm-6">
+        <Grid.Column mobile={10} className="col-sm-6">
           <Select
             fluid
             name="repeat.frequency"

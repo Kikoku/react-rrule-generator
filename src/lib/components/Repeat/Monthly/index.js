@@ -4,6 +4,8 @@ import RepeatMonthlyOn from './On';
 import RepeatMonthlyOnThe from './OnThe';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 
+import { Grid } from 'semantic-ui-react'
+
 const RepeatMonthly = ({
   id,
   monthly: {
@@ -19,12 +21,13 @@ const RepeatMonthly = ({
   const isOptionAvailable = option => !options.modes || isTheOnlyOneMode(option);
 
   return (
-    <div>
-      <div className="form-group row d-flex align-items-sm-center">
-        <div className="col-sm-1 offset-sm-2">
+    <Grid>
+      <Grid.Row className="form-group row d-flex align-items-sm-center">
+        <Grid.Column mobile={1} />
+        <Grid.Column mobile={1} className="col-sm-1 offset-sm-2">
           every
-        </div>
-        <div className="col-sm-3">
+        </Grid.Column>
+        <Grid.Column mobile={5} className="col-sm-3">
           <input
             id={`${id}-interval`}
             name="repeat.monthly.interval"
@@ -33,11 +36,11 @@ const RepeatMonthly = ({
             value={interval}
             onChange={numericalFieldHandler(handleChange)}
           />
-        </div>
-        <div className="col-sm-1">
+        </Grid.Column>
+        <Grid.Column className="col-sm-1">
           month(s)
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid.Row>
 
       {isOptionAvailable('on') && (
         <RepeatMonthlyOn
@@ -57,8 +60,7 @@ const RepeatMonthly = ({
           handleChange={handleChange}
         />
       )}
-
-    </div>
+    </Grid>
   );
 };
 

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import numericalFieldHandler from '../../../utils/numericalFieldHandler';
 
+import { Grid, Select } from 'semantic-ui-react'
+
 const RepeatMonthlyOn = ({
   id,
   mode,
@@ -12,8 +14,9 @@ const RepeatMonthlyOn = ({
   const isActive = mode === 'on';
 
   return (
-    <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
-      <div className="col-sm-1 offset-sm-2">
+    <Grid.Row className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
+      <Grid.Column mobile={1}/>
+      <Grid.Column mobile={1}>
         {hasMoreModes && (
           <input
             id={id}
@@ -25,25 +28,24 @@ const RepeatMonthlyOn = ({
             onChange={handleChange}
           />
         )}
-      </div>
-      <div className="col-sm-1">
+      </Grid.Column>
+      <Grid.Column mobile={1}>
         on day
-      </div>
+      </Grid.Column>
 
-      <div className="col-sm-2">
-        <select
+      <Grid.Column mobile={4}>
+        <Select
           id={`${id}-day`}
           name="repeat.monthly.on.day"
           aria-label="Repeat monthly on a day"
           className="form-control"
           value={on.day}
           disabled={!isActive}
-          onChange={numericalFieldHandler(handleChange)}
-        >
-          {[...new Array(31)].map((day, i) => <option key={i} value={i + 1}>{i + 1}</option>)}
-        </select>
-      </div>
-    </div>
+          onChange={(e, target) => numericalFieldHandler(handleChange({ target }))}
+          options={[...new Array(31)].map((day, i) => ({key:i, value: i + 1, text: i +1}))}
+        />
+      </Grid.Column>
+    </Grid.Row>
   );
 };
 RepeatMonthlyOn.propTypes = {

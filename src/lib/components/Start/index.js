@@ -22,7 +22,7 @@ const Start = ({
               Start
             </strong>
           </label>
-          </Grid.Column>
+        </Grid.Column>
         <StartOnDate id={id} onDate={onDate} handleChange={handleChange} />
       </Grid.Row>
     </Grid>

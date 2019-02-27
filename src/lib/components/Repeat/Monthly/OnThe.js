@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { DAYS } from '../../../constants/index';
 
+import { Grid, Select } from 'semantic-ui-react'
+
 const RepeatMonthlyOnThe = ({
   id,
   mode,
@@ -13,8 +15,9 @@ const RepeatMonthlyOnThe = ({
   const isActive = mode === 'on the';
 
   return (
-    <div className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
-      <div className="col-sm-1 offset-sm-2">
+    <Grid.Row className={`form-group row d-flex align-items-sm-center ${!isActive && 'opacity-50'}`}>
+      <Grid.Column mobile={1} />
+      <Grid.Column mobile={1}>
         {hasMoreModes && (
           <input
             id={id}
@@ -26,44 +29,42 @@ const RepeatMonthlyOnThe = ({
             onChange={handleChange}
           />
         )}
-      </div>
-      <div className="col-sm-1">
+      </Grid.Column>
+      <Grid.Column mobile={1}>
         on the
-      </div>
-
-      <div className="col-sm-2">
-        <select
+      </Grid.Column>
+      <Grid.Column mobile={4}>
+        <Select
           id={`${id}-which`}
           name="repeat.monthly.onThe.which"
           aria-label="Repeat monthly on the which"
           className="form-control"
           value={onThe.which}
           disabled={!isActive}
-          onChange={handleChange}
-        >
-          <option value="First">First</option>
-          <option value="Second">Second</option>
-          <option value="Third">Third</option>
-          <option value="Fourth">Fourth</option>
-          <option value="Last">Last</option>
-        </select>
-      </div>
-
-      <div className="col-sm-3">
-        <select
+          onChange={(e, target) => handleChange({ target })}
+          options={[
+            {key: 'First', value: 'First', text:'First'},
+            {key: 'Second', value: 'Second', text:'Second'},
+            {key: 'Third', value: 'Third', text:'Third'},
+            {key: 'Fourth', value: 'Fourth', text:'First'},
+            {key: 'Last', value: 'Last', text:'Last'},
+          ]}
+        />
+      </Grid.Column>
+      <Grid.Column mobile={4}>
+        <Select
           id={`${id}-day`}
           name="repeat.monthly.onThe.day"
           aria-label="Repeat monthly on the day"
           className="form-control"
           value={onThe.day}
           disabled={!isActive}
-          onChange={handleChange}
-        >
-          {DAYS.map(day => <option key={day} value={day}>{day}</option>)}
-        </select>
-      </div>
+          onChange={(e, target) => handleChange({ target })}
+          options={DAYS.map(day => ({key:day, value: day, text: day}))}
+        />          
+      </Grid.Column>
 
-    </div>
+    </Grid.Row>
   );
 };
 RepeatMonthlyOnThe.propTypes = {
