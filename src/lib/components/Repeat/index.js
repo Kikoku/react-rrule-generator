@@ -38,18 +38,21 @@ const Repeat = ({
           </label>
         </Grid.Column>
         <Grid.Column mobile={8} className="col-sm-6">
+          <Select
+            fluid
             name="repeat.frequency"
             id={`${id}-frequency`}
             className="form-control"
             value={frequency}
-            onChange={handleChange}
-          >
-            {isOptionAvailable('Yearly') && <option value="Yearly">Yearly</option>}
-            {isOptionAvailable('Monthly') && <option value="Monthly">Monthly</option>}
-            {isOptionAvailable('Weekly') && <option value="Weekly">Weekly</option>}
-            {isOptionAvailable('Daily') && <option value="Daily">Daily</option>}
-            {isOptionAvailable('Hourly') && <option value="Hourly">Hourly</option>}
-          </select>
+            onChange={(e, target) => handleChange({target})}
+            options={[
+              {key: 'Yearly', value: 'Yearly', text: 'Yearly'},
+              {key: 'Monthly', value: 'Monthly', text: 'Monthly'},
+              {key: 'Weekly', value: 'Weekly', text: 'Weekly'},
+              {key: 'Daily', value: 'Daily', text: 'Daily'},
+              {key: 'Hourly', value: 'Hourly', text: 'Hourly'},
+            ].filter(o => isOptionAvailable(o.key))}
+          />
         </Grid.Column>
       </Grid.Row>
 
