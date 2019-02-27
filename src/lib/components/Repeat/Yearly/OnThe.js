@@ -39,13 +39,14 @@ const RepeatYearlyOnThe = ({
 
         <Grid.Column mobile={4}>
           <Select
+            fluid
             id={`${id}-which`}
             name="repeat.yearly.onThe.which"
             aria-label="Repeat yearly on the which"
             className="form-control"
             value={onThe.which}
             disabled={!isActive}
-            onChange={handleChange}
+            onChange={(e, target) => handleChange({ target })}
             options={[
               { key: 'First', value: 'First', text: 'First'},
               { key: 'Second', value: 'Second', text: 'Second'},
@@ -58,13 +59,14 @@ const RepeatYearlyOnThe = ({
 
         <Grid.Column mobile={4}>
           <Select
+            fluid
             id={`${id}-day`}
             name="repeat.yearly.onThe.day"
             aria-label="Repeat yearly on the day"
             className="form-control"
             value={onThe.day}
             disabled={!isActive}
-            onChange={handleChange}
+            onChange={(e, target) => handleChange({ target })}
             options={DAYS.map(day => ({key:day, value:day, text:day}))}
           />
         </Grid.Column>
@@ -75,13 +77,14 @@ const RepeatYearlyOnThe = ({
 
         <Grid.Column mobile={4}>
           <Select
+            fluid
             id={`${id}-month`}
             name="repeat.yearly.onThe.month"
             aria-label="Repeat yearly on the month"
             className="form-control"
             value={onThe.month}
             disabled={!isActive}
-            onChange={handleChange}
+            onChange={(e, target) => handleChange({ target })}
             options={MONTHS.map(month => ({key:month, value:month, text: month}))}
           />
         </Grid.Column>

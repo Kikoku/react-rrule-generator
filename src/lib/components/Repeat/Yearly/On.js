@@ -51,7 +51,7 @@ const RepeatYearlyOn = ({
             className="form-control"
             value={on.month}
             disabled={!isActive}
-            onChange={handleChange}
+            onChange={(e, target) => handleChange({ target })}
             options={MONTHS.map(month => ({key: month, value:month, text: month}))}
           />
         </Grid.Column>
@@ -65,7 +65,7 @@ const RepeatYearlyOn = ({
             className="form-control"
             value={on.day}
             disabled={!isActive}
-            onChange={numericalFieldHandler(handleChange)}
+            onChange={(e, target) => numericalFieldHandler(handleChange({ target }))}
             options={[...new Array(daysInMonth)].map((day, i) => ({ key: i, value: i+1, text: i+1}))}
           />
         </Grid.Column>
