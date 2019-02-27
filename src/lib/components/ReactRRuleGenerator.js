@@ -72,43 +72,42 @@ class ReactRRuleGenerator extends PureComponent {
           )
         }
 
-        <Segment className="px-0 pt-3 border rounded">
-
-          {
-            !options.hideStart && (
-              <div>
-                <Start
-                  id={`${id}-start`}
-                  start={start}
-                  handleChange={this.handleChange}
-                />
-                <hr />
-              </div>
-            )
-          }
-
-          <div>
-            <Repeat
-              id={`${id}-repeat`}
-              repeat={repeat}
-              handleChange={this.handleChange}
-            />
-          </div>
-
-          {
-            !options.hideEnd && (
-              <div>
-                <hr />
-                <End
-                  id={`${id}-end`}
-                  end={end}
-                  handleChange={this.handleChange}
-                />
-              </div>
-            )
-          }
-
-        </Segment>
+        <Segment.Group className="px-0 pt-3 border rounded">
+          <Segment>
+            {
+              !options.hideStart && (
+                <div>
+                  <Start
+                    id={`${id}-start`}
+                    start={start}
+                    handleChange={this.handleChange}
+                  />
+                  <hr />
+                </div>
+              )
+            }
+            <div>
+              <Repeat
+                id={`${id}-repeat`}
+                repeat={repeat}
+                handleChange={this.handleChange}
+              />
+            </div>
+          </Segment>
+          <Segment>
+            {
+              !options.hideEnd && (
+                <div>
+                  <End
+                    id={`${id}-end`}
+                    end={end}
+                    handleChange={this.handleChange}
+                  />
+                </div>
+              )
+            }
+          </Segment>
+        </Segment.Group>
       </div>
     );
   }

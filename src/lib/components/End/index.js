@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EndAfter from './After';
 import EndOnDate from './OnDate';
+import { Grid, Select } from 'semantic-ui-react'
 
 const End = ({
   id,
@@ -17,9 +18,9 @@ const End = ({
   const isOptionSelected = option => mode === option;
 
   return (
-    <div className="px-3">
-      <div className="form-group row">
-        <div className="col-sm-2 text-sm-right">
+    <Grid className="px-3">
+      <Grid.Row className="form-group">
+        <Grid.Column mobile={3} className="text-sm-right">
           <label
             htmlFor={id}
             className="col-form-label"
@@ -28,20 +29,22 @@ const End = ({
               End
             </strong>
           </label>
-        </div>
-        <div className="col-sm-3">
-          <select
+        </Grid.Column>
+        <Grid.Column mobile={4} className="col-sm-3">
+          <Select
+            fluid
             name="end.mode"
             id={id}
             className="form-control"
             value={mode}
-            onChange={handleChange}
-          >
-            {isOptionAvailable('Never') && <option value="Never">Never</option>}
-            {isOptionAvailable('After') && <option value="After">After</option>}
-            {isOptionAvailable('On date') && <option value="On date">On date</option>}
-          </select>
-        </div>
+            onChange={(e, target) => handleChange({ target })}
+            options={[
+              {key:'Never', value:'Never', text: 'Never'},
+              {key:'After', value:'After', text: 'After'},
+              {key:'On date', value:'On date', text: 'On date'},
+            ].filter(o => isOptionAvailable(o))}
+          />
+        </Grid.Column>
 
         {
           isOptionSelected('After') &&
@@ -60,8 +63,8 @@ const End = ({
           />
         }
 
-      </div>
-    </div>
+      </Grid.Row>
+    </Grid>
   );
 };
 
