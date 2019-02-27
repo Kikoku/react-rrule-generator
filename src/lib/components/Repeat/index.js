@@ -5,6 +5,7 @@ import RepeatMonthly from './Monthly/index';
 import RepeatWeekly from './Weekly/index';
 import RepeatDaily from './Daily/index';
 import RepeatHourly from './Hourly/index';
+import { Grid, Select } from 'semantic-ui-react'
 
 const Repeat = ({
   id,
@@ -23,9 +24,10 @@ const Repeat = ({
   const isOptionSelected = option => frequency === option;
 
   return (
-    <div className="px-3">
-      <div className="form-group row">
-        <div className="col-sm-2 text-sm-right">
+    <Grid className="px-3">
+      <Grid.Row className="form-group row">
+        <Grid.Column mobile={1} />
+        <Grid.Column mobile={2} className="col-sm-2 text-sm-right">
           <label
             htmlFor={`${id}-frequency`}
             className="col-form-label"
@@ -34,9 +36,8 @@ const Repeat = ({
               Repeat
             </strong>
           </label>
-        </div>
-        <div className="col-sm-6">
-          <select
+        </Grid.Column>
+        <Grid.Column mobile={8} className="col-sm-6">
             name="repeat.frequency"
             id={`${id}-frequency`}
             className="form-control"
@@ -49,8 +50,8 @@ const Repeat = ({
             {isOptionAvailable('Daily') && <option value="Daily">Daily</option>}
             {isOptionAvailable('Hourly') && <option value="Hourly">Hourly</option>}
           </select>
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid.Row>
 
       {
         isOptionSelected('Yearly') &&
@@ -93,7 +94,7 @@ const Repeat = ({
         />
       }
 
-    </div>
+    </Grid>
   );
 };
 
